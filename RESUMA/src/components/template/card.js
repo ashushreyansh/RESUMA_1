@@ -13,9 +13,11 @@ const useStyles = makeStyles({
     //maxWidth: 645,
     background: 'rgba(0, 0, 0, 0.5)',
     margin: '20px',
+    height:'650px',
+    width:'500px',
   },
   media: {
-    height: 400,
+    height: "500px",
   },
   title:{
     fontWeight:'bold',

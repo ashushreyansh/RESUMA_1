@@ -1,17 +1,27 @@
 const Places = [
     {
-      title: 'Green',
+      title: 'Chronological',
       description:
-        "The Maldives are home to some of the world's most ravishing islands, but it's the sea, which truly makes these islands shine. Luminous aquamarine waters with a crystal clarity lap upon these dazzling white shores, which barely peek above the Indian Ocean.",
-      imageUrl: process.env.PUBLIC_URL + '/images/bg4.jpg',
-      time: 1500,
+        "For candidates with rich, consistent professional experience.",
+      imageUrl: process.env.PUBLIC_URL + '/images/Chronological-Resume.png',
     },
     {
-      title: 'Bora Bora',
+      title: 'Functional',
       description:
-        'Shaped like a giant sombrero, this lush volcanic island stars in countless South Pacific fantasies. The focal point and best asset of this tropical beauty is its ravishing lagoon in technicolor turquoise. Fish, turtles, sharks, and rays swim in the clear waters.',
-      imageUrl: process.env.PUBLIC_URL + '/images/bg2.jpg',
-      time: 1500,
+        'For candidates with several gaps or changes in their career.',
+      imageUrl: process.env.PUBLIC_URL + '/images/functional-resume.png',
+    },
+    {
+      title: 'Targeted',
+      description:
+        'For candidates with specific background and experience and targeted skills towards a specific job.',
+      imageUrl: process.env.PUBLIC_URL + '/images/target-resume.jpg',
+    },
+    {
+      title: 'Combinational',
+      description:
+        'For candidates with a diverse background of experience or when skills and abilities are more relevant than work experience.',
+      imageUrl: process.env.PUBLIC_URL + '/images/combinational-resume.jpg',
     },
   ];
   

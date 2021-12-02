@@ -1,15 +1,24 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 //import loginImg from "../../images/fingerprint.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
 import Footer from '../footer/footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from "../../actions/auth";
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
+    root:{
+        minHeight:"100vh",
+        backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
+        backgroundRepeat:'no-repeat',
+        backgroundSize:'cover',
+    },
     login:{
         minHeight:"791px",
-        background: '#427a99',
+        // background: '#427a99',
         alignItems:'center',
         justifyContent:'center',
         display: 'flex',
@@ -50,11 +59,35 @@ const useStyles = makeStyles((theme) => ({
         margin:'20px',
     },
 }));
-  
+
 export function Login() {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+    const { email, password } = formData;
+    
+    const changefield=(e) =>{
+        e.preventDefault();
+    
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+    const dispatch = useDispatch();
+    
+    const history = useHistory();
+
+    const onFormSubmit = async (e) => {
+        e.preventDefault();
+        console.log(formData);
+        const res = await dispatch(login( email, password ));
+        if(res.status === 1){
+            history.push('/');
+        }
+    };
+
     const classes = useStyles();
       return (
-          <div>
+          <div className={classes.root}>
               <div className={classes.login}>
                 <div className={classes.baseContainer}>
                     <div className={classes.header}>
@@ -71,25 +104,26 @@ export function Login() {
                                 <input type="password" name="password" placeholder="password" />
                             </div>
                         </div> */}
-                        <form className={classes.form}>
+                        <form onSubmit={(e) => onFormSubmit(e)} className={classes.form}>
                             {/* <TextField label="First Name" variant="filled" required />
                             <TextField label="Last Name" variant="filled" required /> */}
-                            <TextField label="Email" variant="filled" type="email" required />
+                            <TextField value={ email } onChange={(e) => changefield(e)} name="email" label="Email" variant="filled" type="email" required />
                             <br />
-                            <TextField label="Password" variant="filled" type="password" required />
+                            <TextField value={ password } onChange={(e) => changefield(e)} name="password" label="Password" variant="filled" type="password" required />
+                            <div className={classes.footer}>
+                                <Button type="submit" variant="contained" color="primary">
+                                    LogIn <LoginIcon className={classes.logo}></LoginIcon>
+                                </Button>
+                                <br/>
+                                <h4>Not yet Registered, then 
+                                    <Button href="/register" type="submit" variant="text" color="inherit">
+                                        Register here   
+                                    </Button>
+                                </h4>
+                            </div>
                         </form>
                     </div>
-                    <div className={classes.footer}>
-                        <Button type="submit" variant="contained" color="primary">
-                            LogIn <LoginIcon className={classes.logo}></LoginIcon>
-                        </Button>
-                        <br/>
-                        <h4>Not yet Registered, then 
-                            <Button href="/register" type="submit" variant="text" color="inherit">
-                                Register here   
-                            </Button>
-                        </h4>
-                    </div>
+                    
                 </div>
             </div>
             <Footer></Footer>

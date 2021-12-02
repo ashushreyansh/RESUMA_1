@@ -22,10 +22,10 @@ export default function Template(){
     const checked = CardAnimations('header');
     return(
         <div className={classes.root} id="card">
-            <ImageCard place={Places[1]} checked={checked} />
             <ImageCard place={Places[0]} checked={checked} />
             <ImageCard place={Places[1]} checked={checked} />
-            <ImageCard place={Places[0]} checked={checked} />
+            <ImageCard place={Places[2]} checked={checked} />
+            <ImageCard place={Places[3]} checked={checked} />
         </div>
     );
 }

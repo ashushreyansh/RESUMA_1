@@ -1,52 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { AppBar, IconButton, Toolbar, Collapse } from "@material-ui/core";
 //import SortIcon from '@material-ui/icons/Sort';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Link as Scroll } from 'react-scroll';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import InfoIcon from '@mui/icons-material/Info';
-import LoginIcon from '@mui/icons-material/Login';
-
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Link as Scroll } from "react-scroll";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import InfoIcon from "@mui/icons-material/Info";
+import LoginIcon from "@mui/icons-material/Login";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../actions/auth";
 
 //import Modal from 'react-bootstrap/Modal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection:'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '80vh',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "80vh",
   },
   appbar: {
-    background: 'none',
-    position:'fixed',
+    background: "none",
+    position: "absolute",
   },
   appbarWrapper: {
-    width: '80%',
-    margin: '0 auto',
+    width: "80%",
+    margin: "0 auto",
   },
   appbarTitle: {
-    flexGrow: '1',
+    flexGrow: "1",
   },
   icon: {
-    color: '#fff',
-    fontSize: '2rem',
+    color: "#fff",
+    fontSize: "2rem",
+  },
+  text: {
+    color: "#fff",
+    marginLeft: "5px",
+    fontSize: "1rem",
   },
   colorText: {
-    color: '#427ad4',
+    color: "#427ad4",
   },
   container: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   title: {
-    color: '#fff',
-    fontSize: '4.5rem',
+    color: "#fff",
+    fontSize: "4.5rem",
   },
   goDown: {
-    color: '#427ad4',
-    fontSize: '4rem',
+    color: "#427ad4",
+    fontSize: "4rem",
   },
 }));
 
@@ -57,9 +63,15 @@ export default function Header() {
     setChecked(true);
   }, []);
 
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   // const [show, setShow] = useState(false);
   // const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
+  const logoutUser = async (e) => {
+    e.preventDefault();
+    await dispatch(logout());
+  };
 
   return (
     <div className={classes.root} id="header">
@@ -68,19 +80,42 @@ export default function Header() {
           <h1 className={classes.appbarTitle}>
             RE<span className={classes.colorText}>SUMA</span>
           </h1>
-          <IconButton href="/login" target="_blank">
-            <LoginIcon className={classes.icon} >Login</LoginIcon>      
+
+          {/* <IconButton href="/profile" target="_blank">
+            <PersonOutlineIcon className={classes.icon} />
+            <span className={classes.text}>Profile</span>
+          </IconButton> */}
+          <IconButton>
+            <InfoIcon className={classes.icon} />
+            <span className={classes.text}>About Us</span>
           </IconButton>
-          <IconButton >
-            <PersonOutlineIcon className={classes.icon} />      
-          </IconButton>
-          <IconButton >
-            <InfoIcon className={classes.icon} />      
-          </IconButton>
+          {auth.authenticated ? (
+            <>
+              <IconButton onClick={(e) => logoutUser(e) }>
+                <LoginIcon className={classes.icon} />
+                <span className={classes.text}>Logout</span>
+              </IconButton>
+              <IconButton href="/profile">
+                <PersonOutlineIcon className={classes.icon} />
+                <span className={classes.text}>Profile</span>
+              </IconButton>
+            </>
+          ) : (
+            <>
+              <IconButton href="/login" >
+                <LoginIcon className={classes.icon} />
+                <span className={classes.text}>Login</span>
+              </IconButton>
+            </>
+          )}
         </Toolbar>
       </AppBar>
 
-      <Collapse in={checked}{...(checked ? { timeout: 1500 } : {})} collapsedHeight={50}>
+      <Collapse
+        in={checked}
+        {...(checked ? { timeout: 1500 } : {})}
+        collapsedHeight={50}
+      >
         <div className={classes.container}>
           <h1 className={classes.title}>
             Start Making <br />
@@ -93,9 +128,6 @@ export default function Header() {
           </Scroll>
         </div>
       </Collapse>
-
-      
     </div>
-    
   );
-} 
+}

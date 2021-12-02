@@ -4,6 +4,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
 import Footer from '../footer/footer';
+//import React, { Fragment, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from "../../actions/auth";
+import { useHistory } from 'react-router-dom';
+//import { useHistory, useLocation } from 'react-router-dom';
+//import { login, authUser } from '../../actions/auth';
+
 
 const useStyles = makeStyles((theme) => ({
     root:{
@@ -11,18 +18,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
         backgroundRepeat:'no-repeat',
         backgroundSize:'cover',
-        // alignItems:'center',
-        // justifyContent:'center',
-        // display: 'flex',
-        // flexDirection: 'column',
     },
     register:{
         minHeight:"791px",
-        //background: '#427a99',  /* fallback for old browsers */
-        //background: '-webkit-linear-gradient(to right, #f2fcfe, #1c92d2)',  /* Chrome 10-25, Safari 5.1-6 */
-        //background: 'linear-gradient(to right, #f2fcfe, #1c92d2)', /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        // backgroundRepeat:'no-repeat',
-        // backgroundSize:'cover',
         alignItems:'center',
         justifyContent:'center',
         display: 'flex',
@@ -71,17 +69,31 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export function Register() {
-    const [fname, setFname] = useState("");
-    const [lname, setLname] = useState("");
-    const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
-    const formSubmit=() =>{
+    
+    const [formData, setFormData] = useState({
+        firstname:'',
+        lastname:'',
+        email: '',
+        password: '',
+    });
+    const { firstname, lastname, email, password } = formData;
 
+    const changefield=(e) =>{
+        e.preventDefault();
+
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        //console.log(formData);
     };
-    // const onChangeValue=(e) =>{
-    //     setFname(e.target.value);
-    // };
-
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const onFormSubmit = async (e) => {
+        e.preventDefault();
+        console.log(formData);
+        const res = await dispatch(register({ firstname, lastname, email, password }));
+        if(res.status === 1){
+            history.push('/login');
+        }
+    };
     const classes = useStyles();
       return (
           <div className={classes.root}>
@@ -91,27 +103,29 @@ export function Register() {
                         <h2>Register</h2>
                     </div>
                     <div className={classes.content}>
-                        <form className={classes.form}>
-                            <TextField value={ fname } onChange={(e) => setFname(e.target.value)} label="First Name" variant="filled" required />
+                        <form onSubmit={(e) => onFormSubmit(e)} className={classes.form}>
+                            <TextField value={ firstname } onChange={(e) => changefield(e)} name="firstname" label="First Name" variant="filled" />
                             <br />
-                            <TextField value={ fname } label="Last Name" variant="filled" required />
+                            <TextField value={ lastname } onChange={(e) => changefield(e)} name="lastname" label="Last Name" variant="filled" />
                             <br />
-                            <TextField label="Email" variant="filled" type="email" required />
+                            <TextField value={ email } onChange={(e) => changefield(e)} name="email" label="Email" variant="filled" type="email" />
                             <br />
-                            <TextField label="Password" variant="filled" type="password" required />
+                            <TextField value={ password } onChange={(e) => changefield(e)} name="password" label="Password" variant="filled" type="password" />
+                            <div className={classes.footer}>
+                                <Button type="submit" variant="contained" color="primary">
+                                    Register <LoginIcon className={classes.logo}></LoginIcon>
+                                </Button>
+                                <br/>
+                                <h4>Already a Member, then 
+                                    <Button href="/login" type="submit" variant="text" color="inherit" >
+                                        Login
+                                    </Button>
+                                </h4>
+                            </div>
                         </form>
+                        
                     </div>
-                    <div className={classes.footer}>
-                        <Button type="submit" variant="contained" color="primary">
-                            Register <LoginIcon className={classes.logo}></LoginIcon>
-                        </Button>
-                        <br/>
-                        <h4>Already a Member, then 
-                            <Button href="/login" type="submit" variant="text" color="inherit" onSubmit={formSubmit()}>
-                                Login
-                            </Button>
-                        </h4>
-                    </div>
+                    
                 </div>
             </div>
             <Footer></Footer>
