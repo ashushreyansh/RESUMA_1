@@ -8,12 +8,12 @@ import '../../App.css';
 import Footer from '../footer/footer';
 
 const useStyles = makeStyles((theme) => ({
-    root:{
-      minHeight:"100vh",
-      backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
-      backgroundRepeat:'no-repeat',
-      backgroundSize:'cover'
-    }
+    // root:{
+    //   minHeight:"100vh",
+    //   backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
+    //   backgroundRepeat:'no-repeat',
+    //   backgroundSize:'cover'
+    // }
   
   }));
 

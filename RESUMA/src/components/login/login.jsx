@@ -12,9 +12,9 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     root:{
         minHeight:"100vh",
-        backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
-        backgroundRepeat:'no-repeat',
-        backgroundSize:'cover',
+        // backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
+        // backgroundRepeat:'no-repeat',
+        // backgroundSize:'cover',
     },
     login:{
         minHeight:"791px",
