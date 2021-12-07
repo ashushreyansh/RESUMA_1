@@ -4,7 +4,7 @@ var cors = require('cors');
 const app = express();
 const pdf = require('html-pdf');
 
-const pdfTemplate = require('./documents/Fuctional/Functional');
+const pdfTemplate = require('./documents/Targeted/Targeted');
 app.use(cors());
 const options = {
     height: '42cm',
