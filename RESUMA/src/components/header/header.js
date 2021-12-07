@@ -10,6 +10,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { Link } from 'react-router-dom';
+import Navbar from '../navbar/navbar';
 
 //import Modal from 'react-bootstrap/Modal'
 
@@ -68,59 +69,19 @@ export default function Header() {
         setChecked(true);
     }, []);
 
-    const dispatch = useDispatch();
-    const auth = useSelector((state) => state.auth);
-    // const [show, setShow] = useState(false);
-    // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
-    const logoutUser = async (e) => {
-        e.preventDefault();
-        await dispatch(logout());
-    };
+    // const dispatch = useDispatch();
+    // const auth = useSelector((state) => state.auth);
+    // // const [show, setShow] = useState(false);
+    // // const handleClose = () => setShow(false);
+    // // const handleShow = () => setShow(true);
+    // const logoutUser = async (e) => {
+    //     e.preventDefault();
+    //     await dispatch(logout());
+    // };
 
     return (
         <div className={classes.root} id='header'>
-            <AppBar className={classes.appbar} elevation={0}>
-                <Toolbar className={classes.appbarWrapper}>
-                    <h1 className={classes.appbarTitle}>
-                        RE<span className={classes.colorText}>SUMA</span>
-                    </h1>
-
-                    {/* <IconButton href="/profile" target="_blank">
-            <PersonOutlineIcon className={classes.icon} />
-            <span className={classes.text}>Profile</span>
-          </IconButton> */}
-                    <IconButton>
-                        <InfoIcon className={classes.icon} />
-                        <span className={classes.text}>About Us</span>
-                    </IconButton>
-                    {auth.authenticated ? (
-                        <>
-                            <IconButton onClick={(e) => logoutUser(e)}>
-                                <LoginIcon className={classes.icon} />
-                                <span className={classes.text}>Logout</span>
-                            </IconButton>
-                            <Link to='/profile'>
-                                <IconButton>
-                                    <PersonOutlineIcon
-                                        className={classes.icon}
-                                    />
-                                    <span className={classes.text}>
-                                        Profile
-                                    </span>
-                                </IconButton>
-                            </Link>
-                        </>
-                    ) : (
-                        <>
-                            <IconButton href='/login'>
-                                <LoginIcon className={classes.icon} />
-                                <span className={classes.text}>Login</span>
-                            </IconButton>
-                        </>
-                    )}
-                </Toolbar>
-            </AppBar>
+            <Navbar></Navbar>
 
             <Collapse
                 in={checked}
