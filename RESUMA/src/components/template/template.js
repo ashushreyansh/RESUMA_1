@@ -3,32 +3,108 @@ import { makeStyles } from '@material-ui/core/styles';
 import ImageCard from './card';
 import Places from '../../data/data';
 import CardAnimations from '../../hook/cardAnimation';
-import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 const useStyles = makeStyles((theme) => ({
     root: {
-        // minHeight:'100px',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        // [theme.breakpoints.down('md')]: {
-        //     flexDirection: 'column',
-        //   },
     },
 }));
 
-// const onChronological = () => {
-//     render={() => <Redirect to='/chronologicalResume' />
-// }
 export default function Template() {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const auth = useSelector((state) => state.auth);
     const checked = CardAnimations('header');
+    const handleClick = async () => {
+        await dispatch(setAlert('you need to sign In first', 'danger'));
+    };
     return (
         <div className={classes.root} id='card'>
-            <ImageCard place={Places[0]} checked={checked} />
-            <ImageCard place={Places[1]} checked={checked} />
-            <ImageCard place={Places[2]} checked={checked} />
-            <ImageCard place={Places[3]} checked={checked} />
+            {auth.authenticated ? (
+                <>
+                    <Link
+                        to='/chronologicalResume'
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ImageCard place={Places[0]} checked={checked} />
+                    </Link>
+                </>
+            ) : (
+                <>
+                    <Link
+                        to='/'
+                        style={{ textDecoration: 'none' }}
+                        onClick={(e) => handleClick()}
+                    >
+                        <ImageCard place={Places[0]} checked={checked} />
+                    </Link>
+                </>
+            )}
+            {auth.authenticated ? (
+                <>
+                    <Link
+                        to='/functionalResume'
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ImageCard place={Places[1]} checked={checked} />
+                    </Link>
+                </>
+            ) : (
+                <>
+                    <Link
+                        to='/'
+                        style={{ textDecoration: 'none' }}
+                        onClick={(e) => handleClick()}
+                    >
+                        <ImageCard place={Places[1]} checked={checked} />
+                    </Link>
+                </>
+            )}
+            {auth.authenticated ? (
+                <>
+                    <Link
+                        to='/targetedResume'
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ImageCard place={Places[2]} checked={checked} />
+                    </Link>
+                </>
+            ) : (
+                <>
+                    <Link
+                        to='/'
+                        style={{ textDecoration: 'none' }}
+                        onClick={(e) => handleClick()}
+                    >
+                        <ImageCard place={Places[2]} checked={checked} />
+                    </Link>
+                </>
+            )}
+            {auth.authenticated ? (
+                <>
+                    <Link
+                        to='/combinationalResume'
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <ImageCard place={Places[3]} checked={checked} />
+                    </Link>
+                </>
+            ) : (
+                <>
+                    <Link
+                        to='/'
+                        style={{ textDecoration: 'none' }}
+                        onClick={(e) => handleClick()}
+                    >
+                        <ImageCard place={Places[3]} checked={checked} />
+                    </Link>
+                </>
+            )}
         </div>
     );
 }

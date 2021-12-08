@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         // height: '650px',
         // width: '500px',
         height: '350px',
-        width: '400px',
+        width: '300px',
     },
     media: {
         height: '200px',

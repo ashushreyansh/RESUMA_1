@@ -7,14 +7,14 @@ import LoginIcon from '@mui/icons-material/Login';
 import Footer from '../footer/footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../../actions/auth";
-import { useHistory } from 'react-router-dom';
-
+import { Link, useHistory } from 'react-router-dom';
+import Navbar from '../navbar/navbar';
 const useStyles = makeStyles((theme) => ({
     root:{
         minHeight:"100vh",
-        // backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
-        // backgroundRepeat:'no-repeat',
-        // backgroundSize:'cover',
+        backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg5.jpg"})`,
+        backgroundRepeat:'no-repeat',
+        backgroundSize:'cover',
     },
     login:{
         minHeight:"791px",
@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
     },
     baseContainer:{
-        background: 'linear-gradient(to right, #f2fcfe, #1c92d2)',
-        padding:'40px',
+        background: 'linear-gradient(to right, #f2fcfe, #6f42c1)',
+        padding:'50px 10px',
         display: 'flex',
         flexDirection:'column',
         alignItems:'center',
@@ -88,6 +88,7 @@ export function Login() {
     const classes = useStyles();
       return (
           <div className={classes.root}>
+              <Navbar />
               <div className={classes.login}>
                 <div className={classes.baseContainer}>
                     <div className={classes.header}>
@@ -111,22 +112,25 @@ export function Login() {
                             <br />
                             <TextField value={ password } onChange={(e) => changefield(e)} name="password" label="Password" variant="filled" type="password" required />
                             <div className={classes.footer}>
-                                <Button type="submit" variant="contained" color="primary">
+                                <Button type="submit" variant="contained" style={{backgroundColor: "#6f42c1"}}>
                                     LogIn <LoginIcon className={classes.logo}></LoginIcon>
                                 </Button>
                                 <br/>
-                                <h4>Not yet Registered, then 
-                                    <Button href="/register" type="submit" variant="text" color="inherit">
+                                <h4 style={{marginTop: "20px"}}>Register a new account
+                                <Link to='/register' style = {{textDecoration: "none", fontSize:"2rem"}}>
+                                    <Button type="submit" variant="text" style={{color:"#000", borderBottom: "0px"}}>
                                         Register here   
                                     </Button>
+                                </Link>
                                 </h4>
                             </div>
                         </form>
                     </div>
                     
                 </div>
+                
             </div>
-            <Footer></Footer>
+            <Footer/>
           </div>
             
       );

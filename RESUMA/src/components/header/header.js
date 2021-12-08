@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { Link } from 'react-router-dom';
 import Navbar from '../navbar/navbar';
-
+// import AlertContainer from '../AlertsContainer/AlertsContainer';
 //import Modal from 'react-bootstrap/Modal'
 
 const useStyles = makeStyles((theme) => ({
@@ -50,9 +50,10 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         textAlign: 'center',
+        filter: 'none',
     },
     title: {
-        color: '#000',
+        color: '#fff',
         fontSize: '4.5rem',
     },
     goDown: {
@@ -80,30 +81,31 @@ export default function Header() {
     // };
 
     return (
-        <div className={classes.root} id='header'>
-            <Navbar></Navbar>
-
-            <Collapse
-                in={checked}
-                {...(checked ? { timeout: 1500 } : {})}
-                collapsedHeight={50}
-            >
-                <div className={classes.container}>
-                    <h1 className={classes.title}>
-                        Start Making <br />
-                        your
-                        <span>
-                            {' '}
-                            RE<span style={{ color: '#6f42c1' }}>SUME</span>
-                        </span>
-                    </h1>
-                    <Scroll to='card' smooth={true}>
-                        <IconButton>
-                            <ExpandMoreIcon className={classes.goDown} />
-                        </IconButton>
-                    </Scroll>
-                </div>
-            </Collapse>
-        </div>
+        <>
+            {/* <Navbar /> */}
+            <div className={classes.root} id='header'>
+                <Collapse
+                    in={checked}
+                    {...(checked ? { timeout: 1500 } : {})}
+                    collapsedHeight={50}
+                >
+                    <div className={classes.container}>
+                        <h1 className={classes.title}>
+                            Start Making <br />
+                            your
+                            <span>
+                                {' '}
+                                RE<span style={{ color: '#6f42c1' }}>SUME</span>
+                            </span>
+                        </h1>
+                        <Scroll to='card' smooth={true}>
+                            <IconButton>
+                                <ExpandMoreIcon className={classes.goDown} />
+                            </IconButton>
+                        </Scroll>
+                    </div>
+                </Collapse>
+            </div>
+        </>
     );
 }

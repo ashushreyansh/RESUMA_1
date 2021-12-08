@@ -1,5 +1,7 @@
 import React  from 'react';
 import { Container, Grid, Box, Link} from '@material-ui/core';
+import styles from './footer.module.css';
+
 //import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
@@ -10,9 +12,9 @@ import { Container, Grid, Box, Link} from '@material-ui/core';
 export default function Footer(){
     //const classes = useStyles();
     return (
-        <footer>
+        <footer className={`${styles['footer']}`}>
             
-            <Box 
+            {/* <Box 
             bgcolor="#6f42c1" color="#fff" style={{paddingTop: "20px"}}>
 
                 <Container maxWidth="lg" style={{marginTop: "50px"}}>
@@ -52,8 +54,9 @@ export default function Footer(){
                         RESUMA &reg; {new Date().getFullYear()}
                     </Box>
                 </Container>
-            </Box>
-            
+            </Box> */}
+            <p><i className={`fa fa-twitter ${styles['footer-icon']}`}></i><i className={`fa fa-facebook ${styles['footer-icon']}`}></i><i className={`fa fa-instagram ${styles['footer-icon']}`}></i><i className={`fa fa-envelope ${styles['footer-icon']}`}></i></p>
+            <p className={`${styles['p-footer']}`}>© Copyright 2021 Resuma</p>
         </footer>
     );
 }

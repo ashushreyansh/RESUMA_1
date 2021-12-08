@@ -6,14 +6,14 @@ import Header from "../header/header";
 import Template from "../template/template";
 import '../../App.css';
 import Footer from '../footer/footer';
-
+import Navbar from '../navbar/navbar';
 const useStyles = makeStyles((theme) => ({
-    // root:{
-    //   minHeight:"100vh",
-    //   backgroundImage:`url(${process.env.PUBLIC_URL + "/images/bg1.jpg"})`,
-    //   backgroundRepeat:'no-repeat',
-    //   backgroundSize:'cover'
-    // }
+    root:{
+      minHeight: '100vh',
+      backgroundImage: `url(${process.env.PUBLIC_URL + '/images/bg5.jpg'})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+    }
   
   }));
 
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles();
     return (
         <div className={classes.root}>
+            <Navbar/>
             <CssBaseline />
             <Header />
             <Template />
