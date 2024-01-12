@@ -1,0 +1,53 @@
+.rootHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.appbar {
+    background: none;
+    position: absolute;
+    background-color: #6f42c1;
+}
+
+.appbarWrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.appbarTitle {
+    flex-grow: 1;
+    color: #000;
+}
+
+.icon {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.text {
+    color: #fff;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
+.colorText {
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+    filter: none;
+}
+
+.title {
+    color: #fff;
+    font-size: 4.5rem;
+}
+
+.goDown {
+    color: #6f42c1;
+    font-size: 4rem;
+}

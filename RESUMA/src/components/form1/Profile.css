@@ -1,0 +1,15 @@
+.margin {
+    margin: 8px;
+    /* Use your desired margin value */
+}
+
+.padding {
+    padding: 8px;
+    /* Use your desired padding value */
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}

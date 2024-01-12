@@ -1,0 +1,39 @@
+.header-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.appbarNav {
+    background: none;
+    position: absolute;
+    background-color: #6f42c1;
+}
+
+.appbarWrapperNav {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.appbarTitle {
+    flex-grow: 1;
+    color: #000;
+    font-size: 2rem;
+}
+
+.icon {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.text {
+    color: #fff;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
+.colorText {
+    color: #fff;
+}

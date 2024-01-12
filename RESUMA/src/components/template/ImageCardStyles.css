@@ -1,0 +1,22 @@
+.rootCard {
+    background: #fff;
+    margin: 20px;
+    height: 350px;
+    width: 300px;
+}
+
+.media {
+    height: 200px;
+}
+
+.titleCard {
+    font-weight: bold;
+    font-size: 2rem;
+    color: #000;
+    text-decoration: underline;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #6f42c1;
+}

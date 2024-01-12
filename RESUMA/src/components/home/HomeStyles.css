@@ -1,0 +1,6 @@
+.root {
+  min-height: 100vh;
+  background-image: url("../../../public/images/bg5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
